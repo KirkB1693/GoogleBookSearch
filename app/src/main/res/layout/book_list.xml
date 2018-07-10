@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/book_list"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:paddingEnd="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingStart="16dp">
+
+    <TextView
+        android:id="@+id/book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textAllCaps="true"
+        android:textColor="@color/textColorBookTitle"
+        android:textSize="16sp"
+        tools:text="Book Title" />
+
+    <ImageView
+        android:id="@+id/book_thumbnail"
+        android:layout_width="30dp"
+        android:layout_height="36dp"
+        android:layout_below="@+id/book_title"
+        android:scaleType="fitCenter"
+        android:src="@drawable/small_sample_book_cover" />
+
+    <TextView
+        android:id="@+id/book_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_title"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/book_thumbnail"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textAllCaps="true"
+        android:textColor="@color/textColorBookTitle"
+        android:textSize="12sp"
+        tools:text="Book Author(s)" />
+
+    <TextView
+        android:id="@+id/book_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_author"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/book_thumbnail"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/textColorBookTitle"
+        android:textSize="10sp"
+        tools:text="Long placeholder for book description that should wrap to more than 2 lines of text" />
+
+
+</RelativeLayout>
