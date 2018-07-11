@@ -4,4 +4,7 @@
     <string name="search_hint">Please Enter a Word or Phrase to Search</string>
     <string name="no_books">No Books Found</string>
     <string name="no_internet">No Internet Connection</string>
+    <string name="book_cover_thumbnail">Book Cover Thumbnail</string>
+    <string name="sample_author_text">Book Author(s)</string>
+    <string name="sample_description_text">Long placeholder for book description that should wrap to more than 2 lines of text</string>
 </resources>

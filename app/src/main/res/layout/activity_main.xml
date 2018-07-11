@@ -8,9 +8,9 @@
         android:layout_height="wrap_content"
         android:hint="@string/search_hint"
         android:inputType="textCapWords"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="16dp"/>
+        android:layout_marginLeft="@dimen/left_margin_standard"
+        android:layout_marginTop="@dimen/search_input_top_margin"
+        android:layout_marginRight="@dimen/left_margin_standard"/>
 
     <Button
         android:id="@+id/button"
@@ -19,8 +19,7 @@
         android:text="@string/search"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/book_search_input"
-        android:layout_marginTop="40dp"
-        android:onClick="searchForBooks"/>
+        android:layout_marginTop="@dimen/search_input_top_margin"/>
 
 </RelativeLayout>
 

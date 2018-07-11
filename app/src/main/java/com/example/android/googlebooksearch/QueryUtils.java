@@ -1,5 +1,6 @@
 package com.example.android.googlebooksearch;
 
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -24,7 +25,7 @@ public final class QueryUtils {
     /**
      * Tag for the log messages
      */
-    public static final String LOG_TAG = QueryUtils.class.getSimpleName();
+    private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
 
     /**
@@ -71,7 +72,8 @@ public final class QueryUtils {
                     if (volumeInfo != null && volumeInfo.length() > 0) {
                         JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
                         String title = volumeInfo.getString("title");
-                        String thumbnail = imageLinks.getString("smallThumbnail");
+                        String thumbnailUrl = imageLinks.getString("smallThumbnail");
+                        Drawable thumbnail = LoadImageFromWebOperations(thumbnailUrl);
                         String description = volumeInfo.getString("description");
                         JSONArray authorsArray = volumeInfo.getJSONArray("authors");
                         StringBuilder authorsBuilder = new StringBuilder();
@@ -80,12 +82,14 @@ public final class QueryUtils {
                                 if (j == 0) {
                                     authorsBuilder.append(authorsArray.getString(j));
                                 } else {
-                                    authorsBuilder.append(", " + authorsArray.getString(j));
+                                    String nextAuthor = ", " + authorsArray.getString(j);
+                                    authorsBuilder.append(nextAuthor);
                                 }
                             }
                         }
                         String authors = authorsBuilder.toString();
                         String bookUrl = volumeInfo.getString("canonicalVolumeLink");
+
 
                         books.add(new Book(title, thumbnail, description, authors, bookUrl));
                     }
@@ -107,7 +111,7 @@ public final class QueryUtils {
     /**
      * Query the Google Books dataset and get a JSON file response
      */
-    public static String fetchBookData(String requestUrl) {
+    private static String fetchBookData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -194,7 +198,14 @@ public final class QueryUtils {
         return output.toString();
     }
 
-
+    private static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            return Drawable.createFromStream(is, "src name");
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 
 }

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#311b92</color>
+    <color name="colorPrimaryDark">#000063</color>
+    <color name="colorAccent">#ffff00</color>
+    <color name="colorSecondary">#ffff00</color>
     <color name="textColorBookTitle">@android:color/black</color>
+    <color name="textColorBookAuthors">@android:color/holo_green_dark</color>
+    <color name="textColorBookDescription">@android:color/darker_gray</color>
 </resources>

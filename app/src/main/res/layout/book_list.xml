@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/book_list"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:paddingEnd="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingStart="16dp">
+    android:layout_height="@dimen/list_item_height"
+    android:paddingEnd="@dimen/list_padding"
+    android:paddingLeft="@dimen/list_padding"
+    android:paddingRight="@dimen/list_padding"
+    android:paddingStart="@dimen/list_padding">
 
     <TextView
         android:id="@+id/book_title"
@@ -16,17 +16,19 @@
         android:ellipsize="end"
         android:fontFamily="sans-serif-medium"
         android:maxLines="1"
+        android:layout_marginTop="@dimen/list_top_margin"
         android:textAllCaps="true"
         android:textColor="@color/textColorBookTitle"
-        android:textSize="16sp"
+        android:textSize="@dimen/book_title_font_size"
         tools:text="Book Title" />
 
     <ImageView
         android:id="@+id/book_thumbnail"
-        android:layout_width="30dp"
-        android:layout_height="36dp"
+        android:layout_width="@dimen/thumbnail_width"
+        android:layout_height="@dimen/thumbnail_height"
         android:layout_below="@+id/book_title"
         android:scaleType="fitCenter"
+        android:contentDescription="@string/book_cover_thumbnail"
         android:src="@drawable/small_sample_book_cover" />
 
     <TextView
@@ -34,28 +36,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/book_title"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="@dimen/left_margin_standard"
         android:layout_toRightOf="@+id/book_thumbnail"
         android:ellipsize="end"
         android:fontFamily="sans-serif-medium"
         android:maxLines="1"
         android:textAllCaps="true"
-        android:textColor="@color/textColorBookTitle"
-        android:textSize="12sp"
-        tools:text="Book Author(s)" />
+        android:textColor="@color/textColorBookAuthors"
+        android:textSize="@dimen/book_author_font_size"
+        tools:text="@string/sample_author_text" />
 
     <TextView
         android:id="@+id/book_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/book_author"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="@dimen/left_margin_standard"
         android:layout_toRightOf="@+id/book_thumbnail"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textColor="@color/textColorBookTitle"
-        android:textSize="10sp"
-        tools:text="Long placeholder for book description that should wrap to more than 2 lines of text" />
+        android:textColor="@color/textColorBookDescription"
+        android:textSize="@dimen/book_description_font_size"
+        tools:text="@string/sample_description_text" />
 
 
 </RelativeLayout>

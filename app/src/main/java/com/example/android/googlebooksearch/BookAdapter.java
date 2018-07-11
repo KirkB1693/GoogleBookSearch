@@ -1,12 +1,14 @@
 package com.example.android.googlebooksearch;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -58,10 +60,13 @@ public class BookAdapter extends ArrayAdapter<Book> {
         book_Title.setText(title);
 
         // Set the proper thumbnail image on the ImageView.
-        String thumbnail = currentBook.getThumbnail();
-
-        // TODO code to set thumnail to imageView
-
+        Drawable thumbnail = currentBook.getThumbnail();
+        ImageView book_Thumbnail = (ImageView) listItemView.findViewById(R.id.book_thumbnail);
+        if (thumbnail != null) {
+            book_Thumbnail.setImageDrawable(thumbnail);
+        } else {
+            book_Thumbnail.setImageResource(R.drawable.small_sample_book_cover);
+        }
 
         // Find the TextView in the book_list.xml layout with the ID version_number
         TextView book_Authors = (TextView) listItemView.findViewById(R.id.book_author);

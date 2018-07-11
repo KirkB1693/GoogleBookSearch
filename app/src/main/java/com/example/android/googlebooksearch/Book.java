@@ -1,14 +1,16 @@
 package com.example.android.googlebooksearch;
 
+import android.graphics.drawable.Drawable;
+
 public class Book {
 
     private String mTitle;
-    private String mThumbnail;
+    private Drawable mThumbnail;
     private String mDescription;
     private String mAuthor;
     private String mUrl;
 
-    public Book (String title, String thumbnail, String description, String author, String url) {
+    public Book (String title, Drawable thumbnail, String description, String author, String url) {
         mTitle = title;
         mThumbnail = thumbnail;
         mDescription = description;
@@ -20,7 +22,7 @@ public class Book {
         return mTitle;
     }
 
-    public String getThumbnail() {
+    public Drawable getThumbnail() {
         return mThumbnail;
     }
 
