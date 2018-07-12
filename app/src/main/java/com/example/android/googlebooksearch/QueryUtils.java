@@ -1,5 +1,6 @@
 package com.example.android.googlebooksearch;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -40,7 +41,7 @@ public final class QueryUtils {
      * Return a list of {@link Book} objects that has been built up from
      * parsing a JSON response.
      */
-    public static ArrayList<Book> extractBooks(String webUrl) {
+    public static ArrayList<Book> extractBooks(Context context, String webUrl) {
 
         Log.i(LOG_TAG, "TEST: extractBooks() has been called");
 
@@ -65,29 +66,52 @@ public final class QueryUtils {
             // build up a list of Book objects with the corresponding data.
             JSONObject baseJsonObject = new JSONObject(fetchBookData(webUrl));
             JSONArray bookArray = baseJsonObject.getJSONArray("items");
-            if (bookArray != null && bookArray.length() > 0) {
-                for (int i = 0; i < bookArray.length(); i++) {
+            int numberOfBooks = bookArray.length();
+            if (bookArray != null && numberOfBooks > 0) {
+                for (int i = 0; i < numberOfBooks; i++) {
                     JSONObject bookObject = bookArray.getJSONObject(i);
                     JSONObject volumeInfo = bookObject.getJSONObject("volumeInfo");
                     if (volumeInfo != null && volumeInfo.length() > 0) {
-                        JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
+
                         String title = volumeInfo.getString("title");
-                        String thumbnailUrl = imageLinks.getString("smallThumbnail");
-                        Drawable thumbnail = LoadImageFromWebOperations(thumbnailUrl);
-                        String description = volumeInfo.getString("description");
-                        JSONArray authorsArray = volumeInfo.getJSONArray("authors");
-                        StringBuilder authorsBuilder = new StringBuilder();
-                        if (authorsArray != null && authorsArray.length() > 0) {
-                            for (int j = 0; j < authorsArray.length(); j++) {
-                                if (j == 0) {
-                                    authorsBuilder.append(authorsArray.getString(j));
-                                } else {
-                                    String nextAuthor = ", " + authorsArray.getString(j);
-                                    authorsBuilder.append(nextAuthor);
+
+                        Drawable thumbnail = context.getResources().getDrawable(R.drawable.small_sample_book_cover);
+
+                         try {
+                             JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
+                             String thumbnailUrl = imageLinks.getString("smallThumbnail");
+                             thumbnail = LoadImageFromWebOperations(thumbnailUrl);
+                         } catch (Exception e){
+                             Log.e("QueryUtils", "Problem getting thumbnail in the book JSON results", e);
+                         }
+
+
+                        String description = "";
+                        try{
+                            description = volumeInfo.getString("description");
+                        } catch (Exception e){
+                            Log.e("QueryUtils", "No Description in the book JSON results", e);
+                        }
+
+                        String authors = "";
+                        try{
+                            JSONArray authorsArray = volumeInfo.getJSONArray("authors");
+                            StringBuilder authorsBuilder = new StringBuilder();
+                            if (authorsArray != null && authorsArray.length() > 0) {
+                                for (int j = 0; j < authorsArray.length(); j++) {
+                                    if (j == 0) {
+                                        authorsBuilder.append(authorsArray.getString(j));
+                                    } else {
+                                        String nextAuthor = ", " + authorsArray.getString(j);
+                                        authorsBuilder.append(nextAuthor);
+                                    }
                                 }
                             }
+                            authors = authorsBuilder.toString();
+                        } catch (Exception e){
+                            Log.e("QueryUtils", "No Authors found in the book JSON results", e);
                         }
-                        String authors = authorsBuilder.toString();
+
                         String bookUrl = volumeInfo.getString("canonicalVolumeLink");
 
 

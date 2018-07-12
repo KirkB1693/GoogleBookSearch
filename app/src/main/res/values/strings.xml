@@ -7,4 +7,6 @@
     <string name="book_cover_thumbnail">Book Cover Thumbnail</string>
     <string name="sample_author_text">Book Author(s)</string>
     <string name="sample_description_text">Long placeholder for book description that should wrap to more than 2 lines of text</string>
+    <string name="author_hint">Enter an Author Name (optional)</string>
+    <string name="title_hint">Enter any words from Title (optional)</string>
 </resources>

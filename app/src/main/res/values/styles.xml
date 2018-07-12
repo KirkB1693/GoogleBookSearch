@@ -8,4 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="EditTextTheme">
+        <item name="android:layout_marginLeft">@dimen/margin_standard</item>
+        <item name="android:layout_marginRight">@dimen/margin_standard</item>
+        <item name="android:background">@color/searchBox</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/search_padding</item>
+        <item name="android:selectAllOnFocus">true</item>
+        <item name="android:textSize">@dimen/search_text_size</item>
+    </style>
+
+
 </resources>

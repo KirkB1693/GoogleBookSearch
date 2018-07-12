@@ -36,11 +36,35 @@ public class MainActivity extends AppCompatActivity {
 
                 EditText search_input_field = (EditText) findViewById(R.id.book_search_input);
                 String searchParam = search_input_field.getText().toString();
-                if (searchParam.isEmpty()) {
+
+                EditText title_input_field = (EditText) findViewById(R.id.title_search_input);
+                String titleParam = title_input_field.getText().toString();
+
+                EditText author_input_field = (EditText) findViewById(R.id.author_search_input);
+                String authorParam = author_input_field.getText().toString();
+
+
+                if (searchParam.isEmpty() && titleParam.isEmpty() && authorParam.isEmpty()) {
                     mBook_Request_Url = null;
                 } else {
+
                     sb.append(GOOGLE_BOOKS_URL_START);
-                    sb.append(searchParam);
+
+                    if (!authorParam.isEmpty()) {
+                        String authorSearch = "inauthor:" + authorParam.replace(" ","+");
+                        sb.append(authorSearch);
+                    }
+                    if (!titleParam.isEmpty()) {
+                        String titleSearch = "+intitle:" + titleParam.replace(" ","+");
+                        sb.append(titleSearch);
+                    }
+                    if (!searchParam.isEmpty()) {
+                    String searchFor = "+" + searchParam.replace(" ","+");
+                    sb.append(searchFor);
+                    }
+
+
+
                     sb.append(GOOGLE_BOOKS_URL_END);
 
                     mBook_Request_Url = sb.toString();
