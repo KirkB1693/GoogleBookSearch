@@ -23,8 +23,7 @@ public class BookListActivity extends AppCompatActivity implements LoaderManager
     public static final String LOG_TAG = MainActivity.class.getName();
 
     /**
-     * Constant value for the book loader ID. We can choose any integer.
-     * This really only comes into play if you're using multiple loaders.
+     * Constant value for the book loader ID.
      */
     private static final int BOOK_LOADER_ID = 1;
 
@@ -48,7 +47,6 @@ public class BookListActivity extends AppCompatActivity implements LoaderManager
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mBook_Request_Url = bundle.getString("url");
-            //The key argument here must match that used in the other activity
         }
 
 
@@ -61,7 +59,7 @@ public class BookListActivity extends AppCompatActivity implements LoaderManager
 
         mbookListView.setEmptyView(mEmptyStateTextView);
 
-        ConnectivityManager cm = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null &&
@@ -101,7 +99,7 @@ public class BookListActivity extends AppCompatActivity implements LoaderManager
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
             // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
             // because this activity implements the LoaderCallbacks interface).
-            Log.i(LOG_TAG,"TEST:  Loader initialized");
+            Log.i(LOG_TAG, "TEST:  Loader initialized");
             loaderManager.initLoader(BOOK_LOADER_ID, null, this);
 
         } else {
@@ -149,7 +147,6 @@ public class BookListActivity extends AppCompatActivity implements LoaderManager
         // Loader reset, so we can clear out our existing data.
         mAdapter.clear();
     }
-
 
 
 }

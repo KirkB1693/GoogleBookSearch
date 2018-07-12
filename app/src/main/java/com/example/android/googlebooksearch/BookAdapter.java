@@ -1,7 +1,6 @@
 package com.example.android.googlebooksearch;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -16,9 +15,8 @@ import java.util.ArrayList;
 public class BookAdapter extends ArrayAdapter<Book> {
     private static final String LOG_TAG = BookAdapter.class.getSimpleName();
 
-
     /**
-     * This is our own custom constructor (it doesn't mirror a superclass constructor).
+     * This is a custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data we want
      * to populate into the lists.
      *
@@ -59,14 +57,11 @@ public class BookAdapter extends ArrayAdapter<Book> {
         String title = currentBook.getTitle();
         book_Title.setText(title);
 
-        // Set the proper thumbnail image on the ImageView.
-        Drawable thumbnail = currentBook.getThumbnail();
+        // Find the ImageView in the book_list.xml layout with the ID version_number
         ImageView book_Thumbnail = (ImageView) listItemView.findViewById(R.id.book_thumbnail);
-        if (thumbnail != null) {
-            book_Thumbnail.setImageDrawable(thumbnail);
-        } else {
-            book_Thumbnail.setImageResource(R.drawable.small_sample_book_cover);
-        }
+        // Get the thumbnail from the current Book object and set this drawable on the book_thumbnail ImageView
+        book_Thumbnail.setImageDrawable(currentBook.getThumbnail());
+
 
         // Find the TextView in the book_list.xml layout with the ID version_number
         TextView book_Authors = (TextView) listItemView.findViewById(R.id.book_author);
@@ -77,10 +72,6 @@ public class BookAdapter extends ArrayAdapter<Book> {
         TextView book_Description = (TextView) listItemView.findViewById(R.id.book_description);
         // Get the book description from the current Book object and then set this text on the book_Description TextView
         book_Description.setText(currentBook.getDescription());
-
-
-
-
 
         /*
         // Return the whole list item layout (containing 3 TextViews and an ImageView)

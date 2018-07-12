@@ -30,7 +30,6 @@ public final class QueryUtils {
 
 
     /**
-     * Create a private constructor because no one should ever create a {@link QueryUtils} object.
      * This class is only meant to hold static variables and methods, which can be accessed
      * directly from the class name QueryUtils (and an object instance of QueryUtils is not needed).
      */
@@ -44,15 +43,6 @@ public final class QueryUtils {
     public static ArrayList<Book> extractBooks(Context context, String webUrl) {
 
         Log.i(LOG_TAG, "TEST: extractBooks() has been called");
-
-        /* Pause for 2 seconds
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
 
         // Create an empty ArrayList that we can start adding books to
         ArrayList<Book> books = new ArrayList<>();
@@ -73,10 +63,14 @@ public final class QueryUtils {
                     JSONObject volumeInfo = bookObject.getJSONObject("volumeInfo");
                     if (volumeInfo != null && volumeInfo.length() > 0) {
 
+                        // Get the book title from the JSONobject volumeInfo
                         String title = volumeInfo.getString("title");
 
+                        // Set a default drawable for the book cover in case there isn't a link in the JSON response
                         Drawable thumbnail = context.getResources().getDrawable(R.drawable.small_sample_book_cover);
 
+                        // Try to get the book cover URL from "imageLinks" in the volumeInfo and
+                        // Catch the error if the URL isn't there or is bad and Log the problem in the error message logs.
                          try {
                              JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
                              String thumbnailUrl = imageLinks.getString("smallThumbnail");
@@ -85,15 +79,21 @@ public final class QueryUtils {
                              Log.e("QueryUtils", "Problem getting thumbnail in the book JSON results", e);
                          }
 
-
+                        // Set a default (blank) description for the book in case there isn't one in the JSON response
                         String description = "";
+
+                        // Try to get the book description from the volumeInfo and
+                        // Catch the error if the description isn't there and Log the problem in the error message logs.
                         try{
                             description = volumeInfo.getString("description");
                         } catch (Exception e){
                             Log.e("QueryUtils", "No Description in the book JSON results", e);
                         }
 
+                        // Set a default (blank) for the authors in case there isn't one in the JSON response
                         String authors = "";
+                        // Try to get the author(s) from the volumeInfo and
+                        // Catch the error if the author(s) are't there and Log the problem in the error message logs.
                         try{
                             JSONArray authorsArray = volumeInfo.getJSONArray("authors");
                             StringBuilder authorsBuilder = new StringBuilder();
@@ -112,6 +112,7 @@ public final class QueryUtils {
                             Log.e("QueryUtils", "No Authors found in the book JSON results", e);
                         }
 
+                        // Get the URL of the book in the Google Book store
                         String bookUrl = volumeInfo.getString("canonicalVolumeLink");
 
 
@@ -222,6 +223,11 @@ public final class QueryUtils {
         return output.toString();
     }
 
+
+    /**
+     * get an image from the submitted URL (@param url)
+     * @return a Drawable
+     */
     private static Drawable LoadImageFromWebOperations(String url) {
         try {
             InputStream is = (InputStream) new URL(url).getContent();

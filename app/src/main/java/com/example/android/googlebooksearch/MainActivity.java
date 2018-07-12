@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String GOOGLE_BOOKS_URL_START = "https://www.googleapis.com/books/v1/volumes?q=";
 
-    private static final String GOOGLE_BOOKS_URL_END = "&prettyPrint=false";
+    private static final String GOOGLE_BOOKS_URL_END = "&prettyPrint=false&langRestrict=en";
 
     private String mBook_Request_Url;
 
@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 EditText author_input_field = (EditText) findViewById(R.id.author_search_input);
                 String authorParam = author_input_field.getText().toString();
 
-
+                // Check to see if any search terms were entered, if they were build the search URL
+                // If not return a null URL
                 if (searchParam.isEmpty() && titleParam.isEmpty() && authorParam.isEmpty()) {
                     mBook_Request_Url = null;
                 } else {
@@ -63,14 +64,13 @@ public class MainActivity extends AppCompatActivity {
                     sb.append(searchFor);
                     }
 
-
-
                     sb.append(GOOGLE_BOOKS_URL_END);
 
                     mBook_Request_Url = sb.toString();
                 }
+
                 if (mBook_Request_Url != null) {
-                    // Create a new intent to open the {@link NumbersActivity}
+                    // Create a new intent to open the {@link BookListActivity}
                     Intent bookIntent = new Intent(MainActivity.this, BookListActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("url", mBook_Request_Url);
