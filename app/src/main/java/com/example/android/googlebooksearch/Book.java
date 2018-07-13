@@ -9,13 +9,15 @@ public class Book {
     private String mDescription;
     private String mAuthor;
     private String mUrl;
+    private float mRating;
 
-    public Book (String title, Drawable thumbnail, String description, String author, String url) {
+    public Book (String title, Drawable thumbnail, String description, String author, String url, float rating) {
         mTitle = title;
         mThumbnail = thumbnail;
         mDescription = description;
         mAuthor = author;
         mUrl = url;
+        mRating = rating;
     }
 
     public String getTitle() {
@@ -38,6 +40,10 @@ public class Book {
         return mUrl;
     }
 
+    public float getRating() {
+        return mRating;
+    }
+
     @Override
     public String toString() {
         return "Book {"+
@@ -46,6 +52,7 @@ public class Book {
                 ", mDescription =" + mDescription +
                 ", mAuthor ="+ mAuthor +
                 ", mUrl ="+ mUrl +
+                ", mRating ="+ mRating +
                 "}";
     }
 }

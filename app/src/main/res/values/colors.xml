@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#311b92</color>
     <color name="colorPrimaryDark">#000063</color>
-    <color name="colorAccent">#ffff00</color>
+    <color name="colorAccent">#7c4dff</color>
     <color name="colorSecondary">#ffff00</color>
     <color name="textColorBookTitle">@android:color/black</color>
     <color name="textColorBookAuthors">@android:color/holo_green_dark</color>

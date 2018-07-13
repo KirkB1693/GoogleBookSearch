@@ -115,8 +115,16 @@ public final class QueryUtils {
                         // Get the URL of the book in the Google Book store
                         String bookUrl = volumeInfo.getString("canonicalVolumeLink");
 
+                        float rating = -1.0f;
+                        // Try to get the book description from the volumeInfo and
+                        // Catch the error if the description isn't there and Log the problem in the error message logs.
+                        try{
+                            rating = (float) volumeInfo.getDouble("averageRating");
+                        } catch (Exception e){
+                            Log.e("QueryUtils", "No averageRating in the book JSON results", e);
+                        }
 
-                        books.add(new Book(title, thumbnail, description, authors, bookUrl));
+                        books.add(new Book(title, thumbnail, description, authors, bookUrl, rating));
                     }
                 }
             }

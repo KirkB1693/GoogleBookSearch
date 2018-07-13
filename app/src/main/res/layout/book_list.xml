@@ -22,6 +22,31 @@
         android:textSize="@dimen/book_title_font_size"
         tools:text="Book Title" />
 
+    <TextView
+        android:id="@+id/no_rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/book_title"
+        android:layout_marginLeft="@dimen/margin_standard"
+        android:layout_toRightOf="@+id/book_thumbnail"
+        android:text="@string/not_rated"
+        style="?android:attr/ratingBarStyleSmall"
+        android:textColor="@color/textColorBookDescription"
+        android:visibility="gone"
+        />
+
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/book_title"
+        android:layout_marginLeft="@dimen/margin_standard"
+        android:layout_toRightOf="@+id/book_thumbnail"
+        android:numStars="5"
+        android:stepSize="0.5"
+        style="?android:attr/ratingBarStyleSmall"
+        />
+
     <ImageView
         android:id="@+id/book_thumbnail"
         android:layout_width="@dimen/thumbnail_width"
@@ -35,7 +60,7 @@
         android:id="@+id/book_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/book_title"
+        android:layout_below="@+id/rating_bar"
         android:layout_marginLeft="@dimen/margin_standard"
         android:layout_toRightOf="@+id/book_thumbnail"
         android:ellipsize="end"

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -61,6 +62,17 @@ public class BookAdapter extends ArrayAdapter<Book> {
         ImageView book_Thumbnail = (ImageView) listItemView.findViewById(R.id.book_thumbnail);
         // Get the thumbnail from the current Book object and set this drawable on the book_thumbnail ImageView
         book_Thumbnail.setImageDrawable(currentBook.getThumbnail());
+
+        float rating = currentBook.getRating();
+        RatingBar book_Rating = (RatingBar) listItemView.findViewById(R.id.rating_bar);
+        TextView no_Book_Rating = (TextView) listItemView.findViewById(R.id.no_rating_bar);
+        if (rating < 0) {
+            book_Rating.setVisibility(View.INVISIBLE);
+            no_Book_Rating.setVisibility(View.VISIBLE);
+        } else {
+            book_Rating.setRating(currentBook.getRating());
+        }
+
 
 
         // Find the TextView in the book_list.xml layout with the ID version_number

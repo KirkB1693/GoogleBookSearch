@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_standard">16dp</dimen>
-    <dimen name="thumbnail_width">40dp</dimen>
-    <dimen name="thumbnail_height">54dp</dimen>
+    <dimen name="thumbnail_width">48dp</dimen>
+    <dimen name="thumbnail_height">65dp</dimen>
     <dimen name="list_top_margin">4dp</dimen>
     <dimen name="list_padding">16dp</dimen>
-    <dimen name="list_item_height">88dp</dimen>
+    <dimen name="list_item_height">100dp</dimen>
     <dimen name="search_input_top_margin">40dp</dimen>
     <dimen name="book_title_font_size">16sp</dimen>
     <dimen name="book_author_font_size">14sp</dimen>
