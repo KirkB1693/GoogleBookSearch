@@ -39,7 +39,7 @@
             android:layout_below="@id/author_search_input"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/search_input_top_margin"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/colorSecondary"
             android:text="@string/search" />
 
 </RelativeLayout>

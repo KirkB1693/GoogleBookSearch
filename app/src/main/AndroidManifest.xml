@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:label="List of Books Found"
+            android:label="@string/book_list_activity_header"
             android:name=".BookListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

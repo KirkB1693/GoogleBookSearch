@@ -32,7 +32,7 @@
         android:text="@string/not_rated"
         style="?android:attr/ratingBarStyleSmall"
         android:textColor="@color/textColorBookDescription"
-        android:visibility="gone"
+        android:visibility="invisible"
         />
 
     <RatingBar
